@@ -1,6 +1,6 @@
-# Python's GUI with TKinter
-Design powerful GUIs in Python using TKinter
+# Python's GUIs
+Design powerful GUIs in Python using different packages.
 
 This Repo is inspired a lot by great online Pythonist like:
-- Sentdex:
+- Sentdex (TKinter):
     - Link: https://pythonprogramming.net/tkinter-depth-tutorial-making-actual-program/

@@ -13,7 +13,7 @@ from matplotlib import style
 
 # In[] Global Variables and Constants
 style.use("ggplot")
-WINDOW_SIZE = (640, 480)
+WINDOW_SIZE = (640, 600)
 LARGE_FONT= ("Verdana", 12)
 NORMAL_FONT= ("Verdana", 10)
 SMALL_FONT= ("Verdana", 8)
@@ -29,11 +29,39 @@ df = pd.DataFrame()
 df = pd.read_csv(df_address_to_open, skiprows=int(skip_rows_n))
 
 # In[] Global Functions
+
+def set_features_to_plot():
+    
+    def set_features(feats):
+        global features_to_plot, fig, axs, line_main, line_mask, line_labels
+        features_to_plot = feats.split(", ")
+        print("Features to plot set to: ", features_to_plot)
+        
+        axs.clear()
+        axs.set_title(f"Labeling '{df_address_to_open.name}' for '{labeled_feature}' feature", loc="center")
+        *line_main, = axs.plot(list(df.index), df.loc[:, features_to_plot])
+        line_mask, = axs.plot(df[feature_to_work_on], "rs-")
+        line_mask.set_alpha(0.0)
+        line_labels, = axs.plot(list(df.index), df[f"{feature_to_work_on}_{labeled_feature}"], "gs-", linewidth=1)
+        line_labels.set_alpha(0.0)
+        fig.canvas.draw()
+    
+    popup = tk.Tk()    
+    popup.wm_title("Set features to plot")
+    popup.resizable(False, False)
+    label = ttk.Label(popup, text="Skip rows:", font=NORMAL_FONT, justify=tk.CENTER)
+    label.grid(row=0, column=0)
+    entry_features = tk.Entry(popup, justify=tk.CENTER, state=tk.NORMAL, font=NORMAL_FONT)
+    entry_features.grid(row=0, column=1)
+    btn_open = ttk.Button(popup, text="Set", command=lambda: set_features(entry_features.get()))
+    btn_open.grid(row=1, column=0)
+    
+    popup.mainloop()    
+    
 def open_file(object):
-    global df, feature_to_work_on, skip_rows_n, labeled_feature, fig, axs, line_main, line_mask, line_labels
     
     def open_file_window(skiprows_n, feat_to_work_on, label_feature):
-        global df, df_address_to_open, skip_rows_n, feature_to_work_on, features_to_plot, \
+        global df, df_address_to_open, skip_rows_n, feature_to_work_on, features_to_plot, labeled_feature, \
             fig, axs, line_main, line_mask, line_labels, \
             x_from, x_to
         
@@ -157,6 +185,10 @@ class MainApp(tk.Tk):
         file_menu.add_separator()
         file_menu.add_command(label="Exit", command=quit)
         menubar.add_cascade(label="File", menu=file_menu)
+        
+        graph_menu = tk.Menu(menubar, tearoff=0)
+        graph_menu.add_command(label="Features to plot", command=set_features_to_plot)
+        menubar.add_cascade(label="Graph", menu=graph_menu)
         
         others_menu = tk.Menu(menubar, tearoff=0)
         others_menu.add_command(label="DF length", command=lambda: print(len(df)))

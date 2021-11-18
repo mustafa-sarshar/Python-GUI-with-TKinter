@@ -4,15 +4,6 @@ from tkinter import ttk, messagebox, scrolledtext
 from tkinter.constants import W
 
 # In[] Functions and Methods
-def click_me():
-    print(lbl_click_me["foreground"])
-    if lbl_click_me["foreground"] == "black" or lbl_click_me["foreground"] == "green":
-        lbl_click_me.configure(foreground="red", text="Fill in the form below!!!")
-        btn_click_me.configure(text="Clicked!")
-    else:
-        lbl_click_me.configure(foreground="green", text="Heyyyy!!!!")
-        btn_click_me.configure(text="Click Me Again!")
-
 def show_info():
     msg_1 = ""
     if var_gender.get() == "female": msg_1 = " Mrs."
@@ -30,28 +21,31 @@ def _exit():
 
 # In[] Define the Layout and Widgets
 window = tk.Tk()
-window.wm_title("Python Simple App")
+window.wm_title("Python Notebook Example")
 window.resizable(True, True)
 
 menu_bar = tk.Menu(master=window)
-
+# Sub-Menu - File
 menu_file = tk.Menu(master=menu_bar, tearoff=False)
 menu_file.add_command(label="New")
 menu_file.add_separator()
 menu_file.add_command(label="Exit", command=_exit)
 menu_bar.add_cascade(label="File", menu=menu_file)
-
+# Sub-Menu - Help
 menu_help = tk.Menu(master=menu_bar, tearoff=False)
 menu_help.add_command(label="About")
 menu_bar.add_cascade(label="Help", menu=menu_help)
 
-lbl_click_me = ttk.Label(master=window, text="Click the 'Click Me' button!", foreground="black")
-lbl_click_me.grid(row=0, column=0)
-btn_click_me = ttk.Button(master=window, text="Click Me!", command=click_me)
-btn_click_me.grid(row=0, column=1)
+tab_controller = ttk.Notebook(master=window)
+tab_contact_info = ttk.Frame(master=tab_controller)
+tab_controller.add(child=tab_contact_info, text="Contact Info")
+tab_bio = ttk.Frame(master=tab_controller)
+tab_controller.add(child=tab_bio, text="Biography")
+tab_controller.pack(fill=tk.BOTH, expand=True)
 
-lblfrm_contact_info = ttk.LabelFrame(master=window, text="Contact Info")
-lblfrm_contact_info.grid(row=1, column=0, columnspan=3)
+# Tab - Contact Info
+lblfrm_contact_info = ttk.LabelFrame(master=tab_contact_info, text="Fill in you contact details")
+lblfrm_contact_info.grid(row=0, column=0, sticky="EWNS")
 
 lbl_name = ttk.Label(master=lblfrm_contact_info, text="Enter a name:", foreground="black")
 lbl_name.grid(row=0, column=0)
@@ -77,19 +71,17 @@ rad_nationality.grid(row=0, column=3, sticky="W")
 rad_nationality = ttk.Radiobutton(master=lblfrm_contact_info, text="Non-U.S", variable=var_nationality, value="non-U.S")
 rad_nationality.grid(row=1, column=3, sticky="W")
 
-lblfrm_bio = ttk.LabelFrame(master=window, text="Bio:")
-lblfrm_bio.grid(row=2, column=0, columnspan=4, sticky="WE")
-srltxt_bio = scrolledtext.ScrolledText(master=lblfrm_bio, width=40, height=5, wrap=tk.WORD)
+# Tab - Biography
+srltxt_bio = scrolledtext.ScrolledText(master=tab_bio, width=45, height=5, wrap=tk.WORD)
 srltxt_bio.grid(row=0, column=0, columnspan=4, sticky="WE")
 
 btn_info = ttk.Button(master=window, text="Show Info", command=show_info)
-btn_info.grid(row=3, column=2, sticky="E")
+btn_info.pack(side=tk.RIGHT)
 
-ent_name.focus()
-
-print(window.winfo_children())
-for widget in window.winfo_children():
-    if widget is not menu_bar: widget.grid_configure(padx=3, pady=3)
+lblfrm_contact_info.grid_configure(padx=3, pady=3)
+print(lblfrm_contact_info.winfo_children())
+for widget in lblfrm_contact_info.winfo_children():
+    widget.grid_configure(padx=3, pady=3)
 
 window.configure(menu=menu_bar)
 window.mainloop()

@@ -1,7 +1,6 @@
 # In[] Libs
 import tkinter as tk
 from tkinter import ttk, messagebox, scrolledtext
-from tkinter.constants import W
 
 # In[] Functions and Methods
 def click_me():

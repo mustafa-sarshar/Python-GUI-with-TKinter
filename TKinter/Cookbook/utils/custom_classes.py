@@ -34,7 +34,7 @@ class ToolTip(object):
             tw.destroy()
 
 #===========================================================
-def createToolTip( widget, text):
+def createToolTip(widget, text):
     toolTip = ToolTip(widget)
     def enter(event):
         toolTip.showtip(text)

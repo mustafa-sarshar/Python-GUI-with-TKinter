@@ -20,7 +20,7 @@ class App(tk.Tk):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.wm_title("Ball Animation")
+        self.wm_title("Game - Ball")
 
         self.frm_main = ttk.Frame(master=self, padding=self.FRM_PADDING)
         self.frm_main.grid(row=0, column=0, sticky="EWNS")

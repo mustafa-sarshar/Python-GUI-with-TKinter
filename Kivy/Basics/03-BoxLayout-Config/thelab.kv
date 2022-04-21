@@ -1,0 +1,23 @@
+BoxLayoutExample:
+
+<BoxLayoutExample>:
+    orientation: "vertical"
+    Button:
+        text: "A"
+        size_hint: None, None
+    Button:
+        text: "B"
+        size_hint: 0.5, 1
+    Button:
+        text: "C"
+        size_hint: 1, .5
+    Button:
+        text: "D"
+        size_hint: None, None
+        height: dp(30) # "30dp"
+        width: dp(200) # "200dp"
+    Button:
+        text: "E"
+        size_hint: .2, 1
+        pos_hint: {"center_x": 0.5, "center_y": 0.2} # x, center_x, right (in vertical orientation) or y, center_y, top (in horizontal orientation)
+        

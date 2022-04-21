@@ -1,0 +1,38 @@
+PageLayoutExample:
+
+<PageLayoutExample@PageLayout>:
+    MainWidget:
+    StackLayoutExample:
+    StackLayoutExample_2:
+
+<ScrollViewExample@ScrollView>:
+    StackLayoutExample:
+        size_hint: 1, None
+        height: self.minimum_height
+
+<MainWidget@Widget>:
+    Button:
+        text: "text"
+        size: "40dp", "40dp"
+        pos: "100dp", "100dp"
+
+<StackLayoutExample_2@StackLayout>:
+    # orientation: "lr/rl-tb/bt"
+    Button:
+        text: "Stack 1"
+        size_hint: .1, .1
+    Button:
+        text: "Stack 2"
+        size_hint: .1, .1
+    Button:
+        text: "Stack 3"
+        size_hint: .1, .1
+    Button:
+        text: "Stack 4"
+        size_hint: .1, .1
+    Button:
+        text: "Stack 5"
+        size_hint: .1, .1
+    Button:
+        text: "Stack 6"
+        size_hint: .1, .1

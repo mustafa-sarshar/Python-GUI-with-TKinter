@@ -1,0 +1,28 @@
+WidgetsExample:
+
+<WidgetsExample@GridLayout>:
+    cols: 3
+    
+    ToggleButton:
+        text: "OFF"
+        font_name: "jeansunho//JeanSunHoBold.ttf"
+        font_size: 30
+        color: 1, .5, .5, 1
+        size_hint: None, 1
+        width: dp(100)
+        on_press: root.on_toggle_button_state(self)
+
+    Button:
+        text: "Click me"
+        font_name: "jeansunho//JeanSunHo.ttf"
+        font_size: 55
+        color: 1, .5, .5, 1
+        on_press: root.on_button_click()
+        disabled: not root.count_enabled
+
+    Label:
+        text: root.my_text
+        font_name: "shlop//shlop rg.ttf"
+        font_size: 35
+        color: 1, .5, .5, 1
+    

@@ -1,0 +1,15 @@
+WidgetsExample:
+
+<WidgetsExample@GridLayout>:
+    cols: 3
+    Switch:
+        size_hint: None, 1
+        width: dp(150)
+        on_active: root.on_switch_active(self)
+    Button:
+        disabled: not root.count_enabled
+        text: "Click me"
+        on_press: root.on_button_click()
+    Label:
+        text: root.my_text
+    

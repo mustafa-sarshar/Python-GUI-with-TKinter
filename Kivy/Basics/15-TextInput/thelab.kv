@@ -8,7 +8,7 @@ WidgetsExample:
         width: dp(100)
         pos_hint: {"center_x": 0.0, "center_y": 0.0}
     GridLayout:
-        rows: 2
+        rows: 3
         Label:
             text: str(int(my_slider.value))
             size_hint: 1, None
@@ -22,4 +22,13 @@ WidgetsExample:
             height: dp(50)
             orientation: "horizontal"
             disabled: not my_switch.active
+        BoxLayout:            
+            TextInput:
+                id: my_text_input
+                hint_text: "asdsad"
+                size_hint: None, None
+                height: dp(300)
+                width: dp(300)
+            Label:
+                text: f"You tpyed:\n{my_text_input.text}"
     

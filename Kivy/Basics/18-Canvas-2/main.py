@@ -35,15 +35,19 @@ class CanvasExample(Widget):
         pos_x, pos_y = widget.pos
         size_w, size_h = widget.size
         if (pos_x+size_w) > win_w:
-            self.inc_x = dp(-100)
+            pos_x = win_w - size_w
+            self.inc_x = -self.inc_x
             print("more")
         elif (pos_x) < 0:
-            self.inc_x = dp(100)
+            pos_x = 0
+            self.inc_x = -self.inc_x
             print("less")
         if (pos_y+size_h) > win_h:
+            pos_y = win_h - size_h
             self.inc_y = dp(-10)
             print("more")
         elif (pos_y) < 0:
+            pos_y = 0
             self.inc_y = dp(10)
             print("less")
         widget.pos = dp(pos_x+self.inc_x), dp(pos_y+self.inc_y)

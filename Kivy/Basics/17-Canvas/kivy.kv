@@ -1,23 +1,52 @@
-MainLayout:
+#:set my_size dp(50)
 
-<MainLayout@GridLayout>:
-    orientation: "lr-tb"
-    cols: 5
-    Image:
-        source: "images/cake_small.jpg"
-        allow_stretch: False
-        keep_ratio: False
-    Image:
-        source: "images/cake.jpg"
-        allow_stretch: True
-        keep_ratio: True
-    Image:
-        source: "images/cake.jpg"
-        allow_stretch: True
-        keep_ratio: False
-    Image:
-        source: "images/cake_small.jpg"
-        allow_stretch: True
-        keep_ratio: False
-    Image:
-        source: "images/cake_small.jpg"
+CanvasLayout:
+
+<CanvasLayout>:
+    canvas:
+        Color:
+            rgba: (1, 1, 1, .5)
+        Rectangle:
+            pos: self.center_x-my_size/2, self.center_y-my_size/2
+            size: my_size, my_size
+        Color:
+            rgb: (1, 1, 1)
+        Ellipse:
+            pos: self.center_x-my_size/2+50, self.center_y-my_size/2+50
+            size: my_size, my_size/2
+        Ellipse:
+            pos: self.center_x-my_size/2-50, self.center_y-my_size/2+50
+            size: my_size, my_size/2
+        Color:
+            rgba: (1, 1, 0, 1)
+        Line:
+            points: (0, 0, 10, 10)
+        Line:
+            points: (10, 10, 100, 10)
+        Line:
+            points: (100, 10, 110, 50)
+        Line:
+            points: (110, 50, 300, 50)
+        Line:
+            points: (400, 0, 500, 50, self.width, 0)
+            width: 2
+        Color:
+            rgba: (1, 0, 0, .3)
+        Line:
+            rectangle: (30, 30, 130, 70)
+        Color:
+            rgba: (1, 1, 1, 1)
+        Line:
+            points: (self.center_x-150, self.center_y-50, self.center_x, self.center_y-70, self.center_x+150, self.center_y-50)
+            width: 1
+        Line:
+            circle: (self.center_x, self.center_y, 200) # center_x, center_y, radius
+            width: 2
+        Line:
+            ellipse: (self.center_x-200-20, self.center_y, 40, 140) # center_x, center_y, radius_x, radius_y            
+            width: 3
+        Line:
+            ellipse: (self.center_x+200-20, self.center_y, 40, 140) # center_x, center_y, radius_x, radius_y
+            width: 3
+        
+

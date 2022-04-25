@@ -10,7 +10,7 @@ import random
 # from pyobjus import autoclass
 
 class Client(App):
-    server_IP = "127.0.1.1"
+    server_IP = "192.168.2.100"
     server_port = 65436
     counter = 0
     def build(self):

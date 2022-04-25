@@ -10,7 +10,7 @@ def listen_once():
 
     list_data = []
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sckt:
-        sckt.bind(SERVER_IP, SERVER_PORT)
+        sckt.bind((SERVER_IP, SERVER_PORT))
         sckt.listen()
         conn, addr = sckt.accept()
         fig = plt.figure()

@@ -25,6 +25,6 @@ def listen_once():
                     timeline = list(range(len(list_data)))
                     plt.plot(timeline, list_data, 'b-')
                     plt.pause(.2)
-                    
+
 if __name__ == "__main__":
     listen_once()

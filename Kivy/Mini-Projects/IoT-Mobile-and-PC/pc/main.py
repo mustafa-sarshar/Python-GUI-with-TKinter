@@ -1,8 +1,7 @@
 import matplotlib.pyplot as plt
 import socket
 
-def listen_once():   
-
+def listen_once():
     # Get host from Wireless LAN Adapter wi-fi ipv4
     HOST = socket.gethostbyname(socket.gethostname())
     PORT = 65436

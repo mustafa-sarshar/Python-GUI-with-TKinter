@@ -29,6 +29,9 @@ Builder.load_string('''
         id: camera
         resolution: (640, 480)
         play: False
+    Image:
+        id: image_capture
+
     ToggleButton:
         text: 'Play'
         on_press: camera.play = not camera.play

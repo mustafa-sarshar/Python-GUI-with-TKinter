@@ -23,13 +23,14 @@ class MainApp(MDApp):
         self.btn_save_image.bind(on_press=self.save_image)
         layout.add_widget(self.btn_save_image)
         self.capture = cv2.VideoCapture(0)
-        Clock.schedule_interval(self.load_video, 1./30.)
+        Clock.create_trigger(self.load_video, 1./30.)
         return layout
 
     def load_video(self, *args):
         res, frame = self.capture.read()
         self.image_frame = frame
         buffer = cv2.flip(frame, 0).tostring()
+        print(buffer)
         texture = Texture.create(size=(frame.shape[1], frame.shape[0]), colorfmt="bgr")
         texture.blit_buffer(buffer, colorfmt="bgr", bufferfmt="ubyte")
         self.image.texture = texture

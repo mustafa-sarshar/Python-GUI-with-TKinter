@@ -27,23 +27,6 @@ from kivy.clock import Clock
 import time
 import numpy as np
 
-class CameraClick(BoxLayout):
-    def capture(self):
-        '''
-        Function to capture the images and give them the names
-        according to their captured time and date.
-        '''
-        camera = self.ids['camera']
-        timestr = time.strftime("%Y%m%d_%H%M%S")
-        # camera.export_to_png("IMG_{}.png".format(timestr))
-        print("Captured")
-
-        height, width = camera.texture.height, camera.texture.width
-        camera_pixels = np.frombuffer(camera.texture.pixels, np.uint8)
-        camera_pixels = camera_pixels.reshape(height, width, 4)
-        print(camera_pixels)
-        # camera.texture = camera_pixels
-
 class TestCamera(App):
 
     flag_transform_image = False

@@ -14,20 +14,18 @@ throw an exception during the kv language processing.
 # import logging
 # Logger.setLevel(logging.TRACE)
 
-from cmath import pi
-from hashlib import sha1
-from turtle import shape
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.camera import Camera
 from kivy.uix.image import Image
 from kivy.uix.togglebutton import ToggleButton
+from kivy.uix.button import Button
 from kivy.graphics.texture import Texture
 from kivy.clock import Clock
 import time
 import numpy as np
 
-class TestCamera(App):
+class CustomCamera(App):
 
     flag_transform_image = False
     def build(self):
@@ -52,6 +50,13 @@ class TestCamera(App):
             on_press=self.btn_transform_image_pressed
         )
         layout.add_widget(self.btn_transform_image)
+
+        self.btn_save_image = Button(
+            text="Save Image", size_hint_y=None, height="48dp",
+            on_press=self.btn_save_image_pressed            
+        )
+        layout.add_widget(self.btn_save_image)
+
         self.trigger_interval = Clock.schedule_interval(self.transform_image, 1./30.)
         return layout
 
@@ -73,4 +78,9 @@ class TestCamera(App):
             texture.blit_buffer(pixels, bufferfmt="ubyte", colorfmt="rgba")
             self.img_camera_transform.texture = texture
 
-TestCamera().run()
+    def btn_save_image_pressed(self, *args):
+        timestr = time.strftime("%Y%m%d_%H%M%S")
+        self.camera.export_to_png("IMG_{}.png".format(timestr))
+
+if __name__ == "__main__":
+    CustomCamera().run()

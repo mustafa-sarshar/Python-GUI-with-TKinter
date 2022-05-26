@@ -9,7 +9,6 @@ not finding a camera, perhaps because gstreamer is not installed, will
 throw an exception during the kv language processing.
 
 '''
-
 # Uncomment these lines to see all the messages
 # from kivy.logger import Logger
 # import logging

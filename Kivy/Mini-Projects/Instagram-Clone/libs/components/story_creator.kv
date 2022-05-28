@@ -25,6 +25,29 @@
             size: dp(53), dp(53)
             radius: (dp(53))
             pos_hint: {"center_x": 0.5, "center_y": 0.6}
+        
+        Circle:
+            radius: (dp(17), )
+            size_hint: None, None
+            size: dp(17), dp(17)
+            md_bg_color: 1, 1, 1, 1
+            pos_hint: {"center_x": 0.8, "center_y": 0.4}
+        
+        FitImage:
+            source: "assets/images/plus_icon.png"
+            size_hint: None, None
+            radius: (dp(15), )
+            size: dp(15), dp(15)
+            md_bg_color: 0, 0, 1, 1
+            pos_hint: {"center_x": 0.8, "center_y": 0.4}
+        
+        MDLabel:
+            text: "Your Story"
+            halign: "center"
+            pos_hint: {"center_x": 0.5, "center_y": 0.1}
+            font_size: dp(11)
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
 
 
 <Circle@MDCard>

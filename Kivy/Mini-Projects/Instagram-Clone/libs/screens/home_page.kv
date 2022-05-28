@@ -36,3 +36,37 @@
                                 # Story Creator
                                 StoryCreator:
                                     avatar: root.profile_picture
+                                
+                                MDBoxLayout:
+                                    adaptive_width: True
+                                    padding: dp(5)
+                                    spacing: dp(5)
+                                    id: Stories
+                        
+                        MDSeparator:
+
+        # Button Navigation Bar
+        MDBoxLayout:
+            adaptive_height: True
+            spacing: dp(10)
+            padding: dp(10)
+
+            MDIconButton:
+                icon: "home"
+            
+            MDIconButton:
+                icon: "magnify"
+            
+            MDIconButton:
+                icon: "movie"
+            
+            MDIconButton:
+                icon: "heart-outline"
+            
+            FitImage:
+                source: root.profile_picture
+                size_hint: None, None
+                size: dp(25), dp(25)
+                radius: (dp(25), )
+                pos_hint: {"center_x": 0.5,"center_y": 0.5}
+

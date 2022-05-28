@@ -1,0 +1,33 @@
+<StoryCreator>:    
+    size_hint: None, None
+    size: dp(60), dp(100)
+    elevation: dp(0)
+    padding: dp(5)
+    spacing: dp(5)
+
+    MDRelativeLayout:
+        size_hint: None, None
+        size: dp(60), dp(100)
+
+        Circle:
+            radius: (50, )
+            size: dp(60), dp(60)
+            md_bg_color: 1, 1, 1, 1
+        
+        Circle:
+            radius: (dp(50), )
+            size: dp(55), dp(55)
+            md_bg_color: 1, 1, 1, 1
+        
+        FitImage:
+            source: root.avatar
+            size_hint: None, None
+            size: dp(53), dp(53)
+            radius: (dp(53))
+            pos_hint: {"center_x": 0.5, "center_y": 0.6}
+
+
+<Circle@MDCard>
+    size_hint: None, None
+    elevation: dp(0)
+    pos_hint: {"center_x": 0.5, "center_y": 0.6}

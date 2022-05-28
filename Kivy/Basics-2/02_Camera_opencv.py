@@ -1,74 +1,43 @@
-'''
-Camera Example
-==============
+"""
+Source: https://www.youtube.com/watch?v=PwUWtfk2inQ&ab_channel=CZDe
+"""
+from kivymd.app import MDApp
+from kivymd.uix.boxlayout import MDBoxLayout
+from kivy.uix.button import Button
+from kivy.uix.image import Image
+from kivy.graphics.texture import Texture
+from kivy.clock import Clock
+import cv2, time
 
-This example demonstrates a simple use of the camera. It shows a window with
-a buttoned labelled 'play' to turn the camera on and off. Note that
-not finding a camera, perhaps because gstreamer is not installed, will
-throw an exception during the kv language processing.
-$pip install kivy-garden.xcamera
-
-'''
-
-# Uncomment these lines to see all the messages
-# from kivy.logger import Logger
-# import logging
-# Logger.setLevel(logging.TRACE)
-
-from kivy.app import App
-from kivy.lang import Builder
-from kivy.uix.boxlayout import BoxLayout
-import time
-import cv2 as cv
-import numpy as np
-
-Builder.load_string('''
-<CameraClick>:
-    orientation: 'vertical'
-    Camera:
-        id: camera
-        resolution: (640, 480)
-        play: False
-    Image:
-        id: image_capture
-
-    ToggleButton:
-        text: 'Play'
-        on_press: camera.play = not camera.play
-        size_hint_y: None
-        height: '48dp'
-    Button:
-        text: 'Capture'
-        size_hint_y: None
-        height: '48dp'
-        on_press: root.capture()
-''')
-
-
-class CameraClick(BoxLayout):
-    def capture(self):
-        '''
-        Function to capture the images and give them the names
-        according to their captured time and date.
-        '''
-        camera = self.ids['camera']
-        height, width = camera.texture.height, camera.texture.width
-        newvalue = np.frombuffer(camera.texture.pixels, np.uint8)
-        newvalue = newvalue.reshape(height, width, 4)
-        gray = cv.cvtColor(newvalue, cv.COLOR_RGBA2GRAY)
-        print(gray)
-
-        print(height, width)
-        print("Camera: ", type(camera))
-        timestr = time.strftime("%Y%m%d_%H%M%S")
-        camera.export_to_png("IMG_{}.png".format(timestr))
-        print("Captured")
-
-
-class TestCamera(App):
+class MainApp(MDApp):
 
     def build(self):
-        return CameraClick()
+        layout = MDBoxLayout(orientation="vertical")
+        self.image = Image()
+        layout.add_widget(self.image)
+        self.btn_save_image = Button(
+            text="Save Image",
+            pos_hint={"center_x": .5, "center_y": .5},
+            size_hint= (None, None)
+        )
+        self.btn_save_image.bind(on_press=self.save_image)
+        layout.add_widget(self.btn_save_image)
+        self.capture = cv2.VideoCapture(0)
+        Clock.schedule_interval(self.load_video, 1./30.)
+        return layout
 
+    def load_video(self, *args):
+        res, frame = self.capture.read()
+        self.image_frame = frame
+        buffer = cv2.flip(frame, 0).tostring()
+        texture = Texture.create(size=(frame.shape[1], frame.shape[0]), colorfmt="bgr")
+        texture.blit_buffer(buffer, colorfmt="bgr", bufferfmt="ubyte")
+        self.image.texture = texture
 
-TestCamera().run()
+    def save_image(self, *args):
+        print("save image")
+        timestr = time.strftime("%Y%m%d_%H%M%S")
+        cv2.imwrite("IMG_{}.png".format(timestr), self.image_frame)
+        
+if __name__ == "__main__":
+    MainApp().run()

@@ -34,14 +34,14 @@ class HelloWorldDude(toga.App):
         self.main_window.content = main_box
         self.main_window.show()
 
-    def say_hello(self, widget):
+    async def say_hello(self, widget):
         # print("Hello,", self.name_input.value)
         if self.name_input.value:
             name = self.name_input.value
         else:
             name = "stranger"
-        with httpx.Client() as client:
-            response = client.get("https://jsonplaceholder.typicode.com/posts/42")
+        async with httpx.AsyncClient() as client:
+            response = await client.get("https://jsonplaceholder.typicode.com/posts/42")
         payload = response.json()
 
         self.main_window.info_dialog(

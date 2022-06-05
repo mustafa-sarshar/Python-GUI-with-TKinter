@@ -1,0 +1,53 @@
+[tool.briefcase]
+project_name = "AppTutorial"
+bundle = "com.example.helloworlddude"
+version = "0.0.1"
+url = "https://helloworlddude.example.com/helloworlddude"
+license = "MIT license"
+author = 'muSSar'
+author_email = "mussar@helloworlddude.example.com"
+
+[tool.briefcase.app.helloworlddude]
+formal_name = "Hello World Dude"
+description = "This is just the beginning of the long journey."
+icon = "src/helloworlddude/resources/helloworlddude"
+sources = ['src/helloworlddude']
+requires = [
+    "httpx>=0.19",
+]
+
+
+[tool.briefcase.app.helloworlddude.macOS]
+requires = [
+    'toga-cocoa>=0.3.0.dev32',
+    'std-nslog==1.0.0'
+]
+
+[tool.briefcase.app.helloworlddude.linux]
+requires = [
+    'toga-gtk>=0.3.0.dev32',
+]
+system_requires = [
+    'libgirepository1.0-dev',
+    'libcairo2-dev',
+    'libpango1.0-dev',
+    'libwebkitgtk-3.0-0',
+    'gir1.2-webkit-3.0',
+]
+
+[tool.briefcase.app.helloworlddude.windows]
+requires = [
+    'toga-winforms>=0.3.0.dev32',
+]
+
+# Mobile deployments
+[tool.briefcase.app.helloworlddude.iOS]
+requires = [
+    'toga-iOS>=0.3.0.dev32',
+    'std-nslog==1.0.0'
+]
+
+[tool.briefcase.app.helloworlddude.android]
+requires = [
+    'toga-android>=0.3.0.dev32'
+]

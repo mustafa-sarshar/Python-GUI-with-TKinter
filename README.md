@@ -10,7 +10,7 @@ This Repo is inspired a lot by great online resources as listed below:
     - https://towardsdatascience.com/building-android-apps-with-python-part-1-603820bebde8 (accessed on 15th April, 2022)
     - https://kivy.org/doc/stable/tutorials/pong.html (accessed on 15th April, 2022)
 - KivyMD
-    - https://www.youtube.com/watch?v=PwUWtfk2inQ&ab_channel=CZDe
+    - https://www.youtube.com/watch?v=PwUWtfk2inQ&ab_channel=CZDe (accessed on 26th May, 2022)
 - PyQt
     - https://www.pythonguis.com/pyqt6-tutorial/
 - PySimpleGUI Documentation & Repo
